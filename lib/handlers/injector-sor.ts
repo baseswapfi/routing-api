@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@uniswap/sdk-core'
+import { ChainId, Token } from '@baseswapfi/sdk-core'
 import {
   CachingGasStationProvider,
   CachingTokenListProvider,
@@ -34,7 +34,7 @@ import {
   CachingV2PoolProvider,
   TokenValidatorProvider,
   ITokenPropertiesProvider,
-} from '@uniswap/smart-order-router'
+} from '@baseswapfi/smart-order-router'
 import { TokenList } from '@uniswap/token-lists'
 import { default as bunyan, default as Logger } from 'bunyan'
 import { ethers } from 'ethers'
@@ -51,25 +51,26 @@ import { DefaultEVMClient } from './evm/EVMClient'
 import { InstrumentedEVMProvider } from './evm/provider/InstrumentedEVMProvider'
 import { deriveProviderName } from './evm/provider/ProviderName'
 import { V2DynamoCache } from './pools/pool-caching/v2/v2-dynamo-cache'
-import { OnChainTokenFeeFetcher } from '@uniswap/smart-order-router/build/main/providers/token-fee-fetcher'
-import { PortionProvider } from '@uniswap/smart-order-router/build/main/providers/portion-provider'
+import { OnChainTokenFeeFetcher } from '@baseswapfi/smart-order-router/build/main/providers/token-fee-fetcher'
+import { PortionProvider } from '@baseswapfi/smart-order-router/build/main/providers/portion-provider'
 
 export const SUPPORTED_CHAINS: ChainId[] = [
-  ChainId.MAINNET,
-  ChainId.OPTIMISM,
-  ChainId.ARBITRUM_ONE,
-  ChainId.ARBITRUM_GOERLI,
-  ChainId.POLYGON,
-  ChainId.POLYGON_MUMBAI,
-  ChainId.GOERLI,
-  ChainId.SEPOLIA,
-  ChainId.CELO,
-  ChainId.CELO_ALFAJORES,
-  ChainId.BNB,
-  ChainId.AVALANCHE,
+  // ChainId.MAINNET,
+  // ChainId.OPTIMISM,
+  // ChainId.ARBITRUM_ONE,
+  // ChainId.ARBITRUM_GOERLI,
+  // ChainId.POLYGON,
+  // ChainId.POLYGON_MUMBAI,
+  // ChainId.GOERLI,
+  // ChainId.SEPOLIA,
+  // ChainId.CELO,
+  // ChainId.CELO_ALFAJORES,
+  // ChainId.BNB,
+  // ChainId.AVALANCHE,
   ChainId.BASE,
+  ChainId.SCROLL,
 ]
-const DEFAULT_TOKEN_LIST = 'https://gateway.ipfs.io/ipns/tokens.uniswap.org'
+const DEFAULT_TOKEN_LIST = 'https://gateway.ipfs.io/ipns/tokens.uniswap.org' // TODO
 
 export interface RequestInjected<Router> extends BaseRInj {
   chainId: ChainId
@@ -154,9 +155,9 @@ export abstract class InjectorSOR<Router, QueryParams> extends Injector<
 
           let timeout: number
           switch (chainId) {
-            case ChainId.ARBITRUM_ONE:
-              timeout = 8000
-              break
+            // case ChainId.ARBITRUM_ONE:
+            //   timeout = 8000
+            //   break
             default:
               timeout = 5000
               break
@@ -336,8 +337,8 @@ export abstract class InjectorSOR<Router, QueryParams> extends Injector<
             v2PoolProvider,
             v3PoolProvider,
             provider,
-            portionProvider,
-            { [ChainId.ARBITRUM_ONE]: 2.5 }
+            portionProvider
+            // { [ChainId.ARBITRUM_ONE]: 2.5 }
           )
 
           const ethEstimateGasSimulator = new EthEstimateGasSimulator(

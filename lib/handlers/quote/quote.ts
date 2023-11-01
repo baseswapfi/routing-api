@@ -1,8 +1,8 @@
 import Joi from '@hapi/joi'
-import { Protocol } from '@uniswap/router-sdk'
-import { UNIVERSAL_ROUTER_ADDRESS } from '@uniswap/universal-router-sdk'
+import { Protocol } from '@baseswapfi/router-sdk'
+import { UNIVERSAL_ROUTER_ADDRESS } from '@baseswapfi/universal-router-sdk'
 import { PermitSingle } from '@uniswap/permit2-sdk'
-import { ChainId, Currency, CurrencyAmount, Token, TradeType } from '@uniswap/sdk-core'
+import { ChainId, Currency, CurrencyAmount, Token, TradeType } from '@baseswapfi/sdk-core'
 import {
   AlphaRouterConfig,
   IRouter,
@@ -14,8 +14,8 @@ import {
   SimulationStatus,
   IMetric,
   ID_TO_NETWORK_NAME,
-} from '@uniswap/smart-order-router'
-import { Pool } from '@uniswap/v3-sdk'
+} from '@baseswapfi/smart-order-router'
+import { Pool } from '@baseswapfi/v3-sdk2'
 import JSBI from 'jsbi'
 import _ from 'lodash'
 import { APIGLambdaHandler, ErrorResponse, HandleRequestParams, Response } from '../handler'
